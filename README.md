@@ -1,5 +1,5 @@
 # swagger
-OpenAPI specification for www.telenote.site
+OpenAPI specification for https://www.telenote.site
 
 Open in editor.swagger.io:
 
