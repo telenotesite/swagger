@@ -1,38 +1,26 @@
 openapi: 3.0.1
-
 info:
   title: Telenote API
-  description:
+  description: |-
     How to use the API?
-
     1) Register in Telegram and register the bot
-
     2) Register in the Telenote service
-
     3) Create a project in your personal account in the Telenote service
-
     4) Now, using the postDeepLink method, get the link and show or send the link to link to the user of your system
-
     5) Now, if the call to the getDeepLinkingId method returns a non-empty response (this means that the user has followed the link and connected to your bot), then you can send messages to the user via Telegram
-
     6) Use the postMessage method to send messages
-  
     7) Check your balance if you cannot send messages to more than 100 users
-
   termsOfService: https://www.telenote.site/#/user-agreement/
   contact:
     email: contact@telenote.site
   license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
+    name: 'Apache 2.0'
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   version: 1.0.0
-
 servers:
-- url: https://api.telenote.site
-
+  - url: https://api.telenote.site
 security:
   - api_key: []
-
 paths:
   /message-api/v1/user-info/deep-link/:
     post:
@@ -46,19 +34,18 @@ paths:
               $ref: '#/components/schemas/RequestDeepLink'
         required: true
       responses:
-        200:
+        '200':
           description: Already created (found by i_key)
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseDeepLink'
-        201:
+        '201':
           description: Created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseDeepLink'
-
   /message-api/v1/user-info/deep_linking_id/:
     get:
       summary: Get deep link id for project and user
@@ -77,13 +64,12 @@ paths:
           required: true
           description: User ID on your system
       responses:
-        200:
+        '200':
           description: User Info
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeepLinkingId'
-
   /message-api/v1/messages/:
     post:
       summary: Add a new message
@@ -96,27 +82,25 @@ paths:
               $ref: '#/components/schemas/Message'
         required: true
       responses:
-        201:
+        '201':
           description: Created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MessageCreated'
-        400:
+        '400':
           description: Invalid input
-
   /message-api/v1/user-info/:
     get:
       summary: Get telenote account info
       operationId: getUserInfo
       responses:
-        200:
+        '200':
           description: User Info
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserInfo'
-
 components:
   schemas:
     Message:
@@ -154,7 +138,6 @@ components:
       required:
         - i_key
         - payload
-
     MessageCreated:
       type: object
       properties:
@@ -175,7 +158,6 @@ components:
             - Delivery
             - Expired
             - Read
-
     UserInfo:
       type: object
       properties:
@@ -183,7 +165,6 @@ components:
           type: string
           description: Account balance
           example: 10.55
-
     RequestDeepLink:
       type: object
       properties:
@@ -202,7 +183,6 @@ components:
               type: string
               description: User ID on your system
               example: 12345
-
     ResponseDeepLink:
       type: object
       properties:
@@ -210,7 +190,6 @@ components:
           type: string
           description: Url for deep linking
           example: https://t.me/<your_bot>?start=<unique_generated_value>
-
     DeepLinkingId:
       type: object
       properties:
@@ -218,7 +197,6 @@ components:
           type: string
           description: Id for link in telenote
           example: 12345
-
   securitySchemes:
     api_key:
       type: apiKey
