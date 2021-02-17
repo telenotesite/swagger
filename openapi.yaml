@@ -1,4 +1,5 @@
 openapi: 3.0.1
+
 info:
   title: Telenote API
   description: |-
@@ -17,10 +18,13 @@ info:
     name: 'Apache 2.0'
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   version: 1.0.0
+
 servers:
   - url: https://api.telenote.site
+
 security:
   - api_key: []
+
 paths:
   /message-api/v1/user-info/deep-link/:
     post:
@@ -46,6 +50,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseDeepLink'
+
   /message-api/v1/user-info/deep_linking_id/:
     get:
       summary: Get deep link id for project and user
@@ -70,6 +75,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeepLinkingId'
+
   /message-api/v1/messages/:
     post:
       summary: Add a new message
@@ -90,6 +96,7 @@ paths:
                 $ref: '#/components/schemas/MessageCreated'
         '400':
           description: Invalid input
+
   /message-api/v1/user-info/:
     get:
       summary: Get telenote account info
@@ -138,6 +145,7 @@ components:
       required:
         - i_key
         - payload
+
     MessageCreated:
       type: object
       properties:
@@ -158,6 +166,7 @@ components:
             - Delivery
             - Expired
             - Read
+
     UserInfo:
       type: object
       properties:
@@ -165,6 +174,7 @@ components:
           type: string
           description: Account balance
           example: 10.55
+
     RequestDeepLink:
       type: object
       properties:
@@ -183,6 +193,7 @@ components:
               type: string
               description: User ID on your system
               example: 12345
+
     ResponseDeepLink:
       type: object
       properties:
@@ -190,6 +201,7 @@ components:
           type: string
           description: Url for deep linking
           example: https://t.me/<your_bot>?start=<unique_generated_value>
+
     DeepLinkingId:
       type: object
       properties:
@@ -197,6 +209,7 @@ components:
           type: string
           description: Id for link in telenote
           example: 12345
+
   securitySchemes:
     api_key:
       type: apiKey
